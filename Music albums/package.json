@@ -1,0 +1,17 @@
+{
+  "name": "music-albums",
+  "version": "1.0.0",
+  "description": "In dieser Aufgabe entwickelst du eine einfache Express-Anwendung bzw. REST API zur Verwaltung von Musikalben. Jedes Album sollte die folgenden Eigenschaften haben:",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mehmet-gkc",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "lowdb": "^6.0.1",
+    "nodemon": "^2.0.22"
+  }
+}
