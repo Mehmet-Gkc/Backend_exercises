@@ -1,4 +1,4 @@
-import express, { request, response } from "express";
+import express from "express";
 import db from "./lowdbConfig.js";
 
 await db.read(); // db.data bekommt Inhalt von db.json
