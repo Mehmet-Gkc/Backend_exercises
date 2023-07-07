@@ -1,25 +1,30 @@
-const express = require('express')
+import express, { json } from 'express';
+import cors from 'cors';
+import { isAdult, validateKeys } from './middleware/validateUser.js';
+import { sanitizationResponse, validationResponse } from './controller/userController.js';
+import { sanitizeName, sortBands, stringsToNumber } from './middleware/sanitization.js';
+
 const app = express()
 
-app.use('/', (request, response) => {
-    // res.send => sendet den Text als Antwort an den Client
-    response.send('Hallo welt!')
+// express middleware
+app.use(json())
+app.use(cors())
+
+// routes
+app.post("/validateUser", validateKeys, isAdult, validationResponse)
+app.post("/sanitizeUser", sanitizeName,stringsToNumber,sortBands,sanitizationResponse)
+
+app.use(function errorHandler(err,req,res,next) {
+    console.log("Error during request proccessing", err)
+    res.status(err.status || 500)
+    res.send({
+        error: {
+            message: err.message
+        }
+    })
 })
 
-app.get('/contact', (req, res) => {
-    // res.send('you are on the path conatc')
-    res.send(`you are on the path conatc', ${error.message}`)
-})
-
-app.get('/random.text', (req, res) => {
-    res.sendFile('random.text')
-})
-
-app.get('/contact/json', (req, res) => {
-    // res.send() => allgemeine Funktion, die erkennt was man macht
-    res.send({ "completed": "false", "todo": "sleep" })
-})
-
-app.listen(3000, () => {
-    console.log(`Server listening on port 3000`);
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
 })
