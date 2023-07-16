@@ -22,16 +22,16 @@ export const getRoom = async (req,res) => {
         }   
 }
 
-export const addRoom = async (req,res) => {
-    const room = req.body;
+export const addRoom = async (req, res) => {
+  const room = req.body;
 
-    try {
-        const newRoom = await RoomModel.create(room);
-        res.status(200).send(`Zimmer ist erfolgreich hizugefügt: ${newRoom}`)
-    } catch (error) {
-        res.send(`Fehler beim Hinzufügen des Zimmers: ${error.message}`)
-    }
-}
+  try {
+    const newRoom = await RoomModel.create(room);
+    res.status(200).send(`Zimmer erfolgreich hinzugefügt ${newRoom}`);
+  } catch (error) {
+    res.send(`Fehler beim Hinzufügen des Zimmers: ${error.message}`);
+  }
+};
 
 export const updateRoom = async (req,res) => {
     const id = req.params.id;
@@ -39,7 +39,7 @@ export const updateRoom = async (req,res) => {
 
     try {
         const room = await RoomModel.findByIdAndUpdate(id, updateRoom, {new:true})
-
+        res.send(`Zimmer erfolgreich aktualisiert`)
         if(!room) {
             return res.status(404).send("Zimmer ist nicht gefunden!")
         }

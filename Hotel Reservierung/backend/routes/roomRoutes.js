@@ -6,7 +6,7 @@ const roomRouter = Router();
 roomRouter
     .get("/rooms", getRooms)
     .get("/rooms/:id", getRoom)
-    .post("rooms", addRoom)
+    .post("/rooms", addRoom)
     .put("/rooms/:id", updateRoom)
     .delete("/rooms/:id", deleteRoom)
 
