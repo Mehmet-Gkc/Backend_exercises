@@ -4,7 +4,7 @@ import './App.css'
 
 const initialForm = {
   guestName: '',
-  room: '',
+  roomNumber: '',
   checkInDate: '',
   checkOutDate: '',
 };
@@ -70,7 +70,7 @@ const App = () => {
     setSelectedReservation(reservation);
     setFormData({
       guestName: reservation.guestName,
-      room: reservation.room,
+      roomNumber: reservation.roomNumber,
       checkInDate: reservation.checkInDate,
       checkOutDate: reservation.checkOutDate,
     });
@@ -116,7 +116,7 @@ const App = () => {
      
         <label className="reservation-label">
           Room Type:
-          <select name="room" value={formData.roomNumber} onChange={handleChange} className="reservation-select">
+          <select name="roomNumber" value={formData.roomNumber} onChange={handleChange} className="reservation-select">
             <option value="">Select a room</option>
             {rooms.map((room) => (
               <option key={room._id} value={room._id}>
@@ -156,7 +156,7 @@ const App = () => {
       {reservations.map((reservation) => (
         <div key={reservation._id} className="reservation-item">
           <p>Guest Name: {reservation.guestName}</p>
-          <p>Room Type: {rooms.find((item) => item._id === reservation.room).roomType}</p>
+          <p>Room Type: {rooms.find((item) => item._id === reservation.roomNumber).roomType}</p>
           <p>Check-in Date: {new Date(reservation.checkInDate).toLocaleDateString('en-GB')}</p>
           <p>Check-out Date: {new Date(reservation.checkOutDate).toLocaleDateString('en-GB')}</p>
           <button onClick={() => handleUpdate(reservation)} className="reservation-update-button">
